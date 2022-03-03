@@ -19,7 +19,6 @@ function Line(initX,initY,couleur,epaisseur,endX,endY){
     this.endX = endX;
     this.endY = endY;
 };
-Line.prototype = new Forme();
 
 function Rectangle(initX,initY,couleur,epaisseur,largeur,hauteur){
     Forme.call(this,initX,initY,couleur,epaisseur);
@@ -27,6 +26,5 @@ function Rectangle(initX,initY,couleur,epaisseur,largeur,hauteur){
     this.hauteur = hauteur;
 
 };
-Rectangle.prototype = new Forme();
 
 // N'oubliez pas l'héritage !
