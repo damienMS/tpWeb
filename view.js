@@ -1,7 +1,7 @@
 
 // Implémenter ici les fonctions paint à ajouter dans chacune des classes du modèle.
 Drawing.prototype.paint = function(ctx,canvas) {
-    console.log(this.getForms());
+    //console.log(this.getForms());
     ctx.fillStyle = '#F0F0F0'; // set canvas' background color
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.list.forEach(element => element.paint(ctx))

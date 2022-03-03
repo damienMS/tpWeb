@@ -8,39 +8,45 @@ function DnD(canvas, interactor) {
   this.finalX = 0;
   this.finalY = 0;
   this.click = false;
+  this.interactor = interactor;
   // Developper les 3 fonctions gérant les événements
 
-  this.maFctGérantLaPression = function(evt){
+  this.maFctGerantLaPression = function(evt){
     var position = getMousePosition(canvas, evt);
     this.click = true;
     this.initX = position.x;
     this.initY = position.y;
-    console.log(position);
+
+    this.interactor.onInteractionStart(this);
+    
   
   }.bind(this);
 
-  this.maFctGérantLeDéplacement = function(evt){
+  this.maFctGerantLeDeplacement = function(evt){
     if (this.click) {
       var position = getMousePosition(canvas, evt);
     this.click = true;
     this.finalX = position.x;
     this.finalY = position.y;
-    console.log(position);
+  
+    this.interactor.onInteractionUpdate(this);
+   
     }
   }.bind(this);
 
-  this.maFctGérantLeRelâchement = function(evt){
+  this.maFctGerantLeRelachement = function(evt){
     var position = getMousePosition(canvas, evt);
     this.click = false;
     this.finalX = position.x;
     this.finalY = position.y;
-    console.log(position);
+
+    this.interactor.onInteractionEnd(this);
   }.bind(this);
 
   // Associer les fonctions précédentes aux évènements du canvas.
-  canvas.addEventListener('mousedown', this.maFctGérantLaPression, false);
-  canvas.addEventListener('mousemove', this.maFctGérantLeDéplacement, false);
-  canvas.addEventListener('mouseup', this.maFctGérantLeRelâchement, false);
+  canvas.addEventListener('mousedown', this.maFctGerantLaPression, false);
+  canvas.addEventListener('mousemove', this.maFctGerantLeDeplacement, false);
+  canvas.addEventListener('mouseup', this.maFctGerantLeRelachement, false);
 
 
 };
