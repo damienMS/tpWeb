@@ -21,6 +21,29 @@ Rectangle.prototype.paint = function(ctx) {
     ctx.lineTo(this.endX, this.endY);
     ctx.stroke();
   };
+
+  function updateShapeList(index, Forme){
+    document.getElementById('shapeList')
+      .insertAdjacentHTML('beforeend',toDom(Forme,index));
+  }
+
+  function toDom(Forme,index){
+      if(Forme && typeof Forme === 'object'){
+        let innerHtml = '<li id="liRemove${index}">'
+        if(Forme.constructor === Rectangle){
+          innerHtml += '<span style = "color :' + Forme.couleur + '">🔳</span> Rectangle.'
+        }
+        else if (Forme.constructor === Line){
+          innerHtml += '<span style = "color :' + Forme.couleur + '">➖</span> Line.'
+        }
+        innerHtml += `<button type ="button" class = "btn btn-default remove" 
+                      id ="remove${index}">
+                        <span class = "glyphicon glyphicon-remove-sign"></
+                        span>
+                      </button>`
+        return innerHtml + '</li>'
+      }
+  }
   
   
   
