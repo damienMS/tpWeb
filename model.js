@@ -2,7 +2,7 @@
 // Implémenter ici les 4 classes du modèle.
 
 function Drawing(){
-    this.list = new Array();
+    this.list = new Map();
 
 };
 
