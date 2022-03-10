@@ -27,4 +27,9 @@ function Rectangle(initX,initY,couleur,epaisseur,largeur,hauteur){
 
 };
 
+function Circle (initX, initY, couleur, epaisseur, radius){
+    Forme.call(this,initX,initY,couleur,epaisseur);
+    this.radius = radius;
+};
+
 // N'oubliez pas l'héritage !

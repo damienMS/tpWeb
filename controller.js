@@ -1,5 +1,5 @@
 
-var editingMode = { rect: 0, line: 1 };
+var editingMode = { rect: 0, line: 1, circle: 2 };
 
 function Pencil(ctx, drawing, canvas) {
 	this.currEditingMode = editingMode.line;
@@ -13,6 +13,7 @@ function Pencil(ctx, drawing, canvas) {
 
 	document.getElementById('butRect').onclick = (_) => this.currEditingMode = editingMode.rect
 	document.getElementById('butLine').onclick = (_) => this.currEditingMode = editingMode.line
+	document.getElementById('butCirc').onclick =(_) => this.currEditingMode = editingMode.circle
 	document.getElementById('spinnerWidth').onchange = (e) => this.currLineWidth = e.target.value
 	document.getElementById('colour').onchange = (e) => this.currColour = e.target.value
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEndth
@@ -25,10 +26,13 @@ function Pencil(ctx, drawing, canvas) {
 			this.currentShape = new Rectangle(dnd.initX,dnd.initY,this.currColour,this.
 			currLineWidth,dnd.finalX-dnd.initX,dnd.finalY-dnd.initY);
 		}
-		else{
+		else if (this.currEditingMode === editingMode.line) {
 			this.currentShape = new Line(dnd.initX,dnd.initY,this.currColour,this.
 			currLineWidth,dnd.finalX,dnd.finalY);
-			
+		}
+		else if (this.currEditingMode === editingMode.circle){
+			this.currentShape = new Circle(dnd.initX,dnd.initY,this.currColour,this.currLineWidth,
+			(Math.sqrt(Math.pow(dnd.finalX - dnd.initX,2) + Math.pow(dnd.finalY - dnd.initY,2))));
 		}
 		drawing.paint(ctx,canvas);
 		this.currentShape.paint(ctx);

@@ -20,7 +20,15 @@ Rectangle.prototype.paint = function(ctx) {
     ctx.moveTo(this.initX, this.initY);
     ctx.lineTo(this.endX, this.endY);
     ctx.stroke();
+    ctx.closePath();
   };
+
+  Circle.prototype.paint = function(ctx) {
+    ctx.beginPath();
+    ctx.arc(this.initX, this.initY,this.radius, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+  }
 
   function updateShapeList(index, Forme){
     document.getElementById('shapeList')
@@ -35,6 +43,9 @@ Rectangle.prototype.paint = function(ctx) {
         }
         else if (Forme.constructor === Line){
           innerHtml += '<span style = "color :' + Forme.couleur + '">➖</span> Line.'
+        }
+        else if(Forme.constructor === Circle){
+          innerHtml += '<span style = "color :' + Forme.couleur + '">⭕</span> Circle.'
         }
         innerHtml += `<button type ="button" class = "btn btn-default remove" 
                       id ="remove${index}">
