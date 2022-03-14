@@ -24,6 +24,8 @@ Rectangle.prototype.paint = function(ctx) {
   };
 
   Circle.prototype.paint = function(ctx) {
+    ctx.strokeStyle = this.couleur;
+    ctx.lineWidth = this.epaisseur;
     ctx.beginPath();
     ctx.arc(this.initX, this.initY,this.radius, 0, 2 * Math.PI);
     ctx.stroke();
