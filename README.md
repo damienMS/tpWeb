@@ -1,4 +1,4 @@
-# ReadMe
+# README
 *Damien MERANTHE & Benjamin RAMONE*
 
 ## Usages
